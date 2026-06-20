@@ -6,19 +6,22 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy server and data
+# Copy all Python modules
 COPY server.py .
-COPY dfTransjakarta1_4MRows.csv .
+COPY vehicle_simulator.py .
+COPY vehicle_server.py .
 
-# Expose WebSocket port
-EXPOSE 8765
+# Expose both ports (transaction: 8765, vehicle: 8766)
+EXPOSE 8765 8766
 
-# Environment defaults
-ENV CSV_PATH=dfTransjakarta1_4MRows.csv
+# Default environment
+ENV CSV_PATH=/data/dfTransjakarta1_4MRows.csv
 ENV WS_HOST=0.0.0.0
-ENV WS_PORT=8765
 ENV SPEED_MULTIPLIER=60
 ENV BATCH_INTERVAL_MS=100
+ENV BUS_FREQUENCY_MIN=15
+ENV TICK_INTERVAL_S=1.0
 ENV AUTO_START=false
 
+# CMD di-override oleh docker-compose per service
 CMD ["python", "server.py"]
