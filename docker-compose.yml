@@ -25,7 +25,7 @@ services:
       CSV_PATH: /data/dfTransjakarta1_4MRows.csv
       WS_HOST: "0.0.0.0"
       WS_PORT: "8765"
-      SPEED_MULTIPLIER: "60"
+      SPEED_MULTIPLIER: "1"
       BATCH_INTERVAL_MS: "100"
     volumes:
       - ./dfTransjakarta1_4MRows.csv:/data/dfTransjakarta1_4MRows.csv:ro
@@ -49,7 +49,7 @@ services:
       GTFS_DIR: /data/file_gtfs
       WS_HOST: "0.0.0.0"
       WS_PORT: "8766"
-      SPEED_MULTIPLIER: "60"
+      SPEED_MULTIPLIER: "1"
       TICK_INTERVAL_S: "5.0"
       SERVICE_FILTER: "SH"
     volumes:
